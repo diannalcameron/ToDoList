@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To Do List</title>
+    </head>
+    <body>
+
+        <p>
+            <h2>To-Do List</h2>
+            <ul id="list">
+                <li>Ride bike</li>
+                <li>Attend class</li>
+                <li>Dishes and laundry</li>
+                <li>Walk with baby</li>
+                <li>Cook dinner</li>
+                <li>Straighten house</li>
+                <li>Homework</li>
+            </ul>
+        </p>
+
+        <p>
+            Add a new task:
+            <form>
+                <input type="text" id="taskbox" placeholder="New Task">
+                <input type="button" id="btnsubmit" value="Submit" onclick="addTask()";>
+
+                <!-- At first I had this tag for the button, but it wouldn't 
+                    respond to the Javascript code... why is that??
+                <button id="btn" onclick="addTask()";>Submit</button> -->
+
+            </form>
+        </p>
+        
+        <script type="text/javascript">
+
+            // Add a new task to the list
+            function addTask() {
+
+                // Select the input element and its value (the text typed into the box)
+                let inputValue = document.getElementById("taskbox");
+
+                // Add a list item (inputValue) to the bottom of the list
+                let newLi = document.createElement('li'); // This creates the new li in memory only, not in the document itself
+                newLi.innerHTML = inputValue.value;
+                let list = document.querySelector('ul');
+                list.appendChild(newLi); // This adds a new list item to the document
+                
+                // This resets the input box to be blank after submit is pressed
+                function reset() {
+                    inputValue.value = "";
+                }
+                reset(); // This runs the function above, setting the input bar value to nothing / blank
+                return false; // This keeps the page from refreshing
+            }
+
+            // When a user clicks on a list item, it is removed
+            // e represents the event (element that has been clicked)
+            document.querySelector("#list").addEventListener('click', function(e) {
+                e.target.remove();
+            })
+
+            /*
+
+            OTHER ATTEMPTS (these do not work) & NOTES
+
+            document.getElementsByTagName("li").addEventListener("click",
+                function removeTask() {
+                    let listItem = document.getElementsByTagName("li");
+                    listItem.parentNode.remove();
+                })
+                    
+                    // I need to figure out how to indicate which specific li to remove when it is clicked
+                    
+                    // let selected = listItem.click;
+                    // listItem.parentNode.removeChild(selected);
+            // })
+            */
+
+            /*
+            function removeTask() {
+
+            }
+
+            /*
+            function removeTask() {
+                if(list.children[0].click) {
+                    list.children[0].remove();
+                } else if (list.children[1].click) {
+                    list.children[1].remove();
+                } else if (list.children[1].click) {
+                    list.children[2].remove();
+                } else if (list.children[1].click) {
+                    list.children[3].remove();
+                } else if (list.children[1].click) {
+                    list.children[4].remove();
+                } else if (list.children[1].click) {
+                    list.children[5].remove();
+                } else if (list.children[1].click) {
+                    list.children[6].remove();
+                } 
+            } */
+
+                // function removeElement(elementId) {
+                // let element = document.getElementById(elementId);
+                // element.parentNode.removeChild(element); }
+
+                /* How to replace an element
+                let homework = document.querySelector('li.item7');
+                let straightenHouse = homework.previousElementSibling;
+                straightenHouse.innerHTML = "NOT"; */
+
+                /* How to remove something
+                document.querySelector('.item7').remove(); */
+
+        </script>
+        
+    </body>
+</html>
